@@ -10,8 +10,8 @@
       Solution
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx">
-      Deploy env. **
+    <a href="https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP">
+      Challenge
     </a>
   </h3>
 </div>
