@@ -3,7 +3,7 @@ import routes from './routes/api'
 import mongoose from 'mongoose'
 import express from 'express'
 import {populateDogDB} from "./db/controllers/dog.controller";
-
+import bodyParser from "body-parser";
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
@@ -15,9 +15,11 @@ const init = async () => {
   const connection = mongoose.connection.db;
   const promisedDbSetup =  mongoose.connect('mongodb://localhost:27017/my-unsplash')
 
+
   await Promise.all([promisedAppSetup, promisedDbSetup])
   populateDogDB()
 
+  server.use(bodyParser.json())
   server.use('/api', routes)
 
   // we keep Nextjs folder-structure-based page routing
