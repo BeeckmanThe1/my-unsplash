@@ -5,4 +5,4 @@ const DogSchema = new Schema({
     age: Number
 });
 
-export const DogModel = model('Dogs', DogSchema)
+export const Dog = model('Dogs', DogSchema)

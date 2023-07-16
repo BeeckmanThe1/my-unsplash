@@ -2,6 +2,7 @@ import next from 'next'
 import routes from './routes/api'
 import mongoose from 'mongoose'
 import express from 'express'
+import {populateDogDB} from "./db/controllers/dog.controller";
 
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
@@ -11,9 +12,11 @@ const server = express()
 
 const init = async () => {
   const promisedAppSetup = app.prepare()
-  const promisedDbSetup =  mongoose.connect('mongodb://localhost:27017/lel')
+  const connection = mongoose.connection.db;
+  const promisedDbSetup =  mongoose.connect('mongodb://localhost:27017/my-unsplash')
 
   await Promise.all([promisedAppSetup, promisedDbSetup])
+  populateDogDB()
 
   server.use('/api', routes)
 
