@@ -1,12 +1,8 @@
 import {Router} from "express";
-import {getDogs} from "../../../db/controllers/dog.controller";
+import {getDogs} from "../../../controllers/dog.controller";
 
 const route = Router();
 
-route.get('/', async (req, res) => {
-    const dogs = await getDogs()
-
-    return res.json(dogs)
-})
+route.get('/', getDogs)
 
 export default route

@@ -1,6 +1,6 @@
-import {Dog} from "../schemas/dog.schema";
+import {Dog} from "../db/schemas/dog.schema";
 
-export const populateDogDB = async () => {
+const populateDogDB = async () => {
     const currentDogs = await getDogs()
     const isAlreadyPopulated = currentDogs?.length > 0
 
@@ -18,4 +18,9 @@ export const populateDogDB = async () => {
 
     console.log('Succesfully populated DB')
 }
-export const getDogs = async () => await Dog.find({})
+const getDogs = async () => await Dog.find({})
+
+export default {
+    populateDogDB,
+    getDogs
+}
