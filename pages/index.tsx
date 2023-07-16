@@ -1,18 +1,20 @@
 import Link from 'next/link'
 
-export default function Home() {
+export const Home = () => {
   return (
     <ul>
       <li>
-        <Link href="/pages/a" as="/a">
+        <Link href="/pages/a/index" as="/a">
           a
         </Link>
       </li>
       <li>
-        <Link href="/pages/b" as="/b">
+        <Link href="/pages/b/index" as="/b">
           b
         </Link>
       </li>
     </ul>
   )
 }
+
+export default Home
