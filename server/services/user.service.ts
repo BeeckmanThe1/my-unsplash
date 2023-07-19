@@ -27,5 +27,6 @@ export default {
     createUser,
     validateUsernameAvailability,
     validateLogin,
-    getUserByUsername
+    getUserByUsername,
+    getUserById
 }
