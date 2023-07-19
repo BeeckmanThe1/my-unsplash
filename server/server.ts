@@ -1,9 +1,9 @@
 import next from 'next'
-import routes from './routes/api'
+import apiRoutes from './routes/api'
 import mongoose from 'mongoose'
 import express from 'express'
 import session from 'express-session'
-import {authMiddleware} from "./routes/auth.midleware";
+import {secureRoute} from "./routes/auth.midleware";
 import {sessionOptions} from "./config/auth.sessions.config";
 
 const port = parseInt(process.env.PORT || '3000', 10)
@@ -18,14 +18,13 @@ const init = async () => {
     const connection = mongoose.connection.db;
     const promisedDbSetup = mongoose.connect('mongodb://localhost:27017/my-unsplash')
 
-
     await Promise.all([promisedAppSetup, promisedDbSetup])
 
     server.use(session(sessionOptions));
     server.use(express.json())  // bodyparser
 
-    server.use('/api', authMiddleware, routes)
-    server.all('*', authMiddleware, (req, res) => {
+    server.use('/api', secureRoute, apiRoutes)
+    server.use('/', (req, res) => {
         return handle(req, res)
     })
 

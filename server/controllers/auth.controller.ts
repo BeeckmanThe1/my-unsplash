@@ -19,14 +19,13 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({message: 'User registered successfully'});
 }
+// todo: write tests + try catch
 export const login = async (req, res, next) => {
     const {username, password} = req.body || {};
     const user = await userService.getUserByUsername(username)
     const isValidCredentials = await userService.validateLogin(username, password)
 
     if (isValidCredentials) {
-        // req.session.userId = user?.id
-        // res.status(200).json({message: 'Login successful'});
         req.session.regenerate((err) => {
             if(err) next(err)
 
@@ -47,11 +46,9 @@ export const logout = async (req, res, next) => {
     req.session.save(err => {
         if(err) next(err)
 
-        // regenerate the session, which is good practice to help
-        // guard against forms of session fixation
         req.session.regenerate(function (err) {
             if (err) next(err)
-            res.redirect('/')
+            res.status(200).json({message: 'Successfully logged out'});
         })
     })
 
@@ -66,5 +63,5 @@ export const ping = async (req, res) => {
         return res.status(401).json({message: 'not logged in'})
     }
 
-    res.status(200).json({message: 'PING', user});
+    res.status(200).json({message: 'PING'});
 }
