@@ -7,6 +7,10 @@ config.autoAddCss = false;
 
 const queryClient = new QueryClient()
 
+/*
+* Contains stuff we need on any page:
+*  - QueryClientProvider
+* */
 export const RootLayout = ({children}) => {
     return (
         <QueryClientProvider client={queryClient}>

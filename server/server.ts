@@ -16,7 +16,7 @@ const server = express()
 const init = async () => {
     const promisedAppSetup = app.prepare()
     const connection = mongoose.connection.db;
-    const promisedDbSetup = mongoose.connect('mongodb://localhost:27017/my-unsplash')
+    const promisedDbSetup = mongoose.connect(process.env.DATABASE_URI)
 
     await Promise.all([promisedAppSetup, promisedDbSetup])
 
