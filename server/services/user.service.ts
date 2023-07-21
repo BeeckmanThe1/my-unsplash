@@ -15,6 +15,7 @@ const validateUsernameAvailability = async (username: string) => {
 }
 const getUserByUsername = async (username: string) => await User.findOne({username})
 const getUserById = async (id: string) => await User.findById(id)
+const getUsers = async () => await User.find({})
 const validateLogin = async (username, password) => {
     const user = await User.findOne({username: username})
 
@@ -23,10 +24,17 @@ const validateLogin = async (username, password) => {
     return await bcrypt.compare(password, user?.pwd)
 }
 
+const deleteUserById = async (id: string) => {
+    const user = await User.findById(id)
+    return await (user as any).remove()
+}
+
+
 export default {
     createUser,
     validateUsernameAvailability,
     validateLogin,
     getUserByUsername,
-    getUserById
+    getUserById,
+    getUsers
 }
