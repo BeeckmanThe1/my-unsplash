@@ -1,0 +1,51 @@
+$drawer-radius: 6px;
+
+.drawer {
+  border-radius: $drawer-radius 0 0 $drawer-radius;
+
+  :global {
+    .ant-drawer-header {
+      padding: 12px 0 12px 12px;
+
+      .ant-drawer-header-title {
+        .ant-drawer-title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          svg {
+            margin-right: 12px;
+
+            width: 32px;
+            height: 32px;
+            border: solid 1px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+        }
+
+        flex-direction: row-reverse;
+
+        .user {
+          display: flex;
+          align-items: center;
+          // justify-content: space-between;
+        }
+      }
+    }
+
+    .ant-drawer-body {
+      ul {
+      padding-inline-start: 12px;
+      li {
+        list-style: none;
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 12px;
+        &:hover{
+          background: #f0f2f4;
+        }
+      }
+      }
+    }
+  }
+}
