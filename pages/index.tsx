@@ -7,6 +7,9 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {useFetchUser} from "../client/react-query/user.api";
+import DefaultPageLayout from "./layouts/reusables/DefaultPageLayout";
+
+import React from 'react'
 
 export const Home = () => {
     const [open, setOpen] = useState(false);
